@@ -1,3 +1,10 @@
+#include <assert.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+
 typedef struct __node {
     struct __node *left, *right;
     struct __node *next;
@@ -45,12 +52,6 @@ void list_free(node_t **list)
             node = node->next;
     }
 }
-
-#include <assert.h>
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 /* Verify if list is order */
 static bool list_is_ordered(node_t *list)
@@ -147,11 +148,20 @@ int main(int argc, char **argv)
     quick_sort(&list);
     assert(list_is_ordered(list));
 
+    node_t *head = list;
+
+    while (head != NULL) {
+        printf("  %ld", head->value);
+        head = head->next;
+    }
+
+    printf("\n");
+
     list_free(&list);
 
     free(test_arr);
 
-    return;
+    return 0;
 }
 
 
