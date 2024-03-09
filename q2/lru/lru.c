@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #define container_of(ptr, type, member) \
     ((type *) ((char *) (ptr) - (size_t) & (((type *) 0)->member)))
@@ -180,5 +181,25 @@ void lRUCachePut(LRUCache *obj, int key, int value)
 }
 
 int main() {
+    LRUCache *cache = lRUCacheCreate(3);
+
+    lRUCachePut(cache, 1, 10);
+    lRUCachePut(cache, 2, 20);
+    lRUCachePut(cache, 3, 30);
+
+    printf("key 1: %d\n", lRUCacheGet(cache, 1));
+    printf("key 2: %d\n", lRUCacheGet(cache, 2));
+    printf("key 3: %d\n", lRUCacheGet(cache, 3));
+
+    lRUCachePut(cache, 4, 40);
+
+    printf("\nkey 1 after adding key 4: %d\n\n", lRUCacheGet(cache, 1));
+
+    printf("key 2: %d\n", lRUCacheGet(cache, 2));
+    printf("key 3: %d\n", lRUCacheGet(cache, 3));
+    printf("key 4: %d\n", lRUCacheGet(cache, 4));
+
+    lRUCacheFree(cache);
+
     return 0;
 }
