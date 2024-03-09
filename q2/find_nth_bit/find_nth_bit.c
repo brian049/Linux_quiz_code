@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <stdint.h>
+#include <stdio.h>
 
 /* Assume 64-bit architecture */
 #define BITS_PER_LONG 64
@@ -152,7 +153,26 @@ static inline unsigned long find_nth_bit(const unsigned long *addr,
 }
 
 int main() {
-    
+    // Test case 1
+    unsigned long test_bitmap_1 = 0b10101010;
+    unsigned long bit_position_1 = find_nth_bit(&test_bitmap_1, 8, 2);
+    printf("Bit position of the 3rd set bit in test_bitmap_1: %lu\n", bit_position_1);
+
+    // Test case 2
+    unsigned long test_bitmap_2 = 0b00000001;
+    unsigned long bit_position_2 = find_nth_bit(&test_bitmap_2, 8, 0);
+    printf("Bit position of the 1st set bit in test_bitmap_2: %lu\n", bit_position_2);
+
+    // Test case 3
+    unsigned long test_bitmap_3 = 0b00000000;
+    unsigned long bit_position_3 = find_nth_bit(&test_bitmap_3, 8, 0);
+    printf("Bit position of the 1st set bit in test_bitmap_3: %lu\n", bit_position_3);
+
+    // Test case 4
+    unsigned long test_bitmap_4 = 0b1111111111111111111111111111111111111111111111111111111111111111;
+    unsigned long bit_position_4 = find_nth_bit(&test_bitmap_4, 64, 50);
+    printf("Bit position of the 51st set bit in test_bitmap_4: %lu\n", bit_position_4);
+
     return 0;
 }
 
