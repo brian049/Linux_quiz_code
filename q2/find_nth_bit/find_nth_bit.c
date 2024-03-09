@@ -152,7 +152,6 @@ static inline unsigned long find_nth_bit(const unsigned long *addr,
 }
 
 int main() {
-    unsigned long test = 0x0000ffff;
     
     return 0;
 }
